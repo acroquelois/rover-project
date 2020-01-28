@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Rover from './Rover'
 import ObstacleKanva from './Obstable'
 import useImage from 'use-image';
@@ -6,7 +6,7 @@ import rover from '../assets/mars-rover.png';
 import { Stage, Layer, Rect, Text } from 'react-konva';
 import {Robot, genereteNewRobot} from  '../back/modules/robot'
 import {Obstacle} from '../back/modules/obstacle'
-import {commandReader} from '../back/game'
+import {commandReader, execCommand} from '../back/game'
 import {PLATEAU, ORIENTATION, DEPLACEMENT, LIST_OBSTACLE, OPPOSITE_DIRECTION} from '../back/configuration'
 
 const Map: React.FC = () => {
@@ -29,6 +29,18 @@ const Map: React.FC = () => {
     }
   }
 
+  const launchRobot = (commands: string, interval:number, robot: Robot,deplacement:{ [key: string]: ((arg0: [number,number]) => [number, number])}, obstacles:Obstacle[], opposite_direction:{ [key: string]:string}, orientation:string[]):void=> {
+    if(commands.length == 0){
+      return
+    }else{
+      let newRobot:Robot = execCommand(commands[0], robot, deplacement, obstacles, opposite_direction, orientation)
+      setTimeout(() => {
+        setRobot(newRobot)
+        return launchRobot(commands.slice(1), interval, newRobot, deplacement, obstacles, opposite_direction, orientation)
+      }, interval)
+    }
+  }
+
   return (
     <div className="Map">
         <Stage 
@@ -46,10 +58,11 @@ const Map: React.FC = () => {
         value={commands}
         onChange={handleTexte}
         />
-        <button onClick={() =>{setRobot(commandReader(commands, robot, DEPLACEMENT, LIST_OBSTACLE, OPPOSITE_DIRECTION, ORIENTATION))}}>
+        <button onClick={() =>{launchRobot(commands,100, robot, DEPLACEMENT, LIST_OBSTACLE, OPPOSITE_DIRECTION, ORIENTATION)}}>
         Cliquez ici
       </button>
     </div>
+    //setRobot(commandReader(commands, robot, DEPLACEMENT, LIST_OBSTACLE, OPPOSITE_DIRECTION, ORIENTATION))}}
   );
 }
 

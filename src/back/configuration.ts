@@ -1,6 +1,6 @@
 import {Obstacle} from './modules/obstacle'
 
-export const PLATEAU:[number,number] = [1200, 500];
+export const PLATEAU:[number,number] = [1200, 600];
 
 export const ORIENTATION:string[] = ['N','E','S','W'];
 
