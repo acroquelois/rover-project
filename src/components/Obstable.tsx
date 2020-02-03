@@ -10,8 +10,8 @@ const ObstacleKanva = (props:{
         x        = {props.obstacle.x}
         y        = {props.obstacle.y}
         fill     = {'black'}
-        width    = {10}
-        height   = {10}
+        width    = {1}
+        height   = {1}
       />
   );
 }

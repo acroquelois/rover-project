@@ -1,10 +1,10 @@
 import {Obstacle} from './modules/obstacle'
 
-export const PLATEAU:[number,number] = [1200, 600];
+export const PLATEAU:[number,number] = [500, 500];
 
 export const ORIENTATION:string[] = ['N','E','S','W'];
 
-export const STEP:number = 10;
+export const STEP:number = 1;
 
 export const DEPLACEMENT:{ [key: string]: ((arg0: [number,number]) => [number, number]);} = {
     'N': function([x,y]:[number,number]): [number, number]{
@@ -27,6 +27,8 @@ export const OPPOSITE_DIRECTION:{ [key: string]:string} = {
     'S':'N',
     'W':'E'
 }
+
+export const NB_OBSTACLE: number = 20;
 
 export const LIST_OBSTACLE:Obstacle[] = [
         {

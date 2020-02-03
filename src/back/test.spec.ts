@@ -1,8 +1,8 @@
 import {Robot, generateRandomCoord, generateRandomOrientation, turnRight, turnLeft, forward, backward} from './modules/robot';
 import {Obstacle, isInObstacle} from './modules/obstacle'
-import {ORIENTATION, DEPLACEMENT, OPPOSITE_DIRECTION, LIST_OBSTACLE, STEP, PLATEAU} from './configuration';
+import {ORIENTATION, DEPLACEMENT, OPPOSITE_DIRECTION, STEP, PLATEAU} from './configuration';
 import {generateRandom} from './modules/utils'
-import {moveForward, moveBackward, moveTurnRight, moveTurnLeft, commandReader, commandReaderReducer} from './game'
+import {moveForward, moveBackward,commandReaderReducer} from './game'
 
 
 describe('Test du robot:', () => {
