@@ -5,12 +5,10 @@ import { Stage, Layer, Rect, Text } from 'react-konva';
 import {Robot, genereteNewRobot} from  '../back/modules/robot'
 import {Obstacle, generateObstable} from '../back/modules/obstacle'
 import {execCommand} from '../back/game'
-import {PLATEAU, ORIENTATION, DEPLACEMENT, LIST_OBSTACLE, OPPOSITE_DIRECTION, NB_OBSTACLE} from '../back/configuration'
+import {PLATEAU, ORIENTATION, DEPLACEMENT, LIST_OBSTACLE, OPPOSITE_DIRECTION, OBSTACLES} from '../back/configuration'
 
 const Map: React.FC = () => {
   const orientation: {[key    : string]: number} = {'N': 90, 'E': 0, 'S': 270, 'W': 180}
-
-
   const [robot, setRobot] = useState(genereteNewRobot(PLATEAU, ORIENTATION));
   const [commands, setCommands] = useState("")
 
@@ -46,7 +44,7 @@ const Map: React.FC = () => {
           >
             <Layer>
               <Rover robot={robot} orientations={orientation}/>
-              {generateObstaclesKanva(generateObstable(NB_OBSTACLE, PLATEAU))}
+              {generateObstaclesKanva(OBSTACLES)}
             </Layer>
           </Stage>
         </div>

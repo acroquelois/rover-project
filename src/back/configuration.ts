@@ -1,4 +1,4 @@
-import {Obstacle} from './modules/obstacle'
+import {Obstacle, generateObstable} from './modules/obstacle'
 
 export const PLATEAU:[number,number] = [500, 500];
 
@@ -28,7 +28,7 @@ export const OPPOSITE_DIRECTION:{ [key: string]:string} = {
     'W':'E'
 }
 
-export const NB_OBSTACLE: number = 20;
+export const NB_OBSTACLES: number = 20
 
 export const LIST_OBSTACLE:Obstacle[] = [
         {
@@ -48,3 +48,5 @@ export const LIST_OBSTACLE:Obstacle[] = [
             y:100
         },
 ]
+
+export const OBSTACLES: Obstacle[] = generateObstable(NB_OBSTACLES, PLATEAU);
